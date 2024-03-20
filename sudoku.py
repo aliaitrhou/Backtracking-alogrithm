@@ -31,15 +31,20 @@ def nice_visual(board):
     print(horizontal_line)
 
 
-# this functin take the coordinates of the specific box (num is the 9 possible numbers), then check to see if the number doesn't exist the either in 3*3 box, row and col, if so it return true else it return false (so we can use them in the main solve function).
 def possible(row, col, num):
+    # this function take the coordinates of the specific box (num is the 9 possible numbers), then check to see
+    # that the number (who has the  specific [row, col] coordinates) doesn't exist either in 3*3 box, row and col,
+    # if so it return true else it return false (so we can use them in the main solve function).
     global sudoku_board
+     # looping through rows
     for i in range(0, 9):
         if sudoku_board[row][i] == num:
             return False
+     # looping through cols
     for i in range(0, 9):
         if sudoku_board[i][col] == num:
             return False
+    # looping through 3*3 box
     x0 = (col//3)*3
     y0 = (row//3)*3
     for i in range(0, 3):
@@ -53,11 +58,12 @@ print("board: ")
 nice_visual(sudoku_board)
 
 
-def solve():  # this function loop through the list of list, at the end of the board it uses the backtracking algorithm (Recursion) to raise up to the previous step if no solution found.
+def solve():  # this function loop through the list of list, at the end of the board it uses the backtracking algorithm (Recursion) 
+    #to raise up to the previous step if no solution found.
     global sudoku_board
     for y in range(9):
         for x in range(9):
-            # that means that this specific box is impty.
+            # that means that this specific 1*1 box is impty.
             if sudoku_board[y][x] == 0:
                 # so we are gonna try all the 9 possible nums.
                 for n in range(1, 10):
